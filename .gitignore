@@ -5,3 +5,7 @@ bin-int/
 
 # Files
 *.user
+
+# temporary ignores
+Hazel/src/Hazel/Window.h
+Hazel/src/Platform-Windows/
