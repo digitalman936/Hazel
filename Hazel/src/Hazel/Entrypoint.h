@@ -6,10 +6,8 @@ extern Hazel::Application* Hazel::CreateApplication();
 
 int main(int argc, char** argv)
 {
-	Hazel::Log::Init(); 
-
-	HZ_CORE_INFO("Welcome to Hazel Game Engine!");
-	HZ_INFO("This is the Client logging!");
+	Hazel::Log::Init();
+	HZ_CORE_INFO("Initialized Log!");
 
 	auto app = Hazel::CreateApplication();
 	app->Run();

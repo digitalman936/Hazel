@@ -79,10 +79,17 @@ namespace Hazel {
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);
-				return true;
-			}
+				// Casts m_Event to type T and returns a valid pointer if m_Event is of type T.
+				// Otherwise casted_event returns a nullptr
+				T* casted_event = dynamic_cast<T*>(&m_Event);
 
+				if (casted_event)
+				{
+					m_Event.m_Handled = func(*casted_event);
+					return true;
+				}
+			}
+			
 			return false;
 		}
 
