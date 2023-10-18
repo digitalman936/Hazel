@@ -37,16 +37,16 @@ namespace Hazel {
 
 	class HAZEL_API Event
 	{
-		friend class EventDispatcher;
-
 	public:
+		bool Handled = false;
+
 		// Returns the type of event
 		virtual EventType GetEventType() const = 0;
 
 		// Returns the name of the event as a string
 		virtual const char* GetName() const = 0;
 
-		// Can be overriden as a custom log message
+		// Can be overridden as a custom log message
 		virtual std::string ToString() const { return GetName(); }
 
 		// Returns an integer (using bit flag system) that represents the category 
@@ -60,9 +60,6 @@ namespace Hazel {
 		{
 			return GetCategoryFlags() & category;
 		}
-
-	protected:
-		bool m_Handled = false;
 	};
 
 	class EventDispatcher
@@ -85,7 +82,7 @@ namespace Hazel {
 
 				if (casted_event)
 				{
-					m_Event.m_Handled = func(*casted_event);
+					m_Event.Handled = func(*casted_event);
 					return true;
 				}
 			}
